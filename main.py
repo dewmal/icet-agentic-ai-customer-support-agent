@@ -18,8 +18,11 @@ customer_support_agent = Agent(
 )
 
 customer_ticket_review_task = Task(
-    description="Receive and assess customer service or repair requests before technician dispatch. Create a service ticket, use the standardized troubleshooting questionnaire to collect detailed symptoms, error codes, unusual noises, operating conditions, and other relevant information. Request photos or short videos when additional evidence is required. Record all customer-provided information and visual evidence accurately in the CRM/ticketing system. Assign an appropriate preliminary diagnostic category and forward the completed ticket to the Service Coordinator for technician scheduling and dispatch.",
-    expected_output="A complete and accurate service ticket containing customer details, appliance/item information, reported symptoms, error codes, troubleshooting responses, and relevant photos or videos. The ticket should include a clearly identified preliminary diagnostic category and sufficient information for the Service Coordinator and technician to understand the likely issue. The expected result is improved technician preparation, correct selection of tools or likely spare parts, reduced unnecessary visits, and an increased First-Time Fix Rate.",
+    description="""
+        Customer sent the following message request :{customer_message}
+        Give the relevent reply
+    """,
+    expected_output="A Professional customer support reponse",
     agent=customer_support_agent
 )
 
@@ -30,5 +33,11 @@ crew = Crew(
 )
 
 if __name__ =='__main__':
-    result = crew.kickoff()
+    customer_message = input("Customer :")
+
+    result = crew.kickoff(
+        inputs={
+            "customer_message":customer_message
+        }
+    )
     print(result)
