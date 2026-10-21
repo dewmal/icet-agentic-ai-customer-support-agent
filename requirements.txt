@@ -90,7 +90,7 @@ packaging==26.3
 pdfminer-six==20260107
 pdfplumber==0.11.10
 pendulum==3.2.0
-pillow==12.3.0
+pillow==13.0.0
 platformdirs==4.11.7
 portalocker==2.7.0
 posthog==5.4.0
